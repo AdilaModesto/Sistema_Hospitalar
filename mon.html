@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Meu Perfil</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f0f2f5; margin: 0; padding: 0; }
+        header { background: #1a73e8; color: white; padding: 15px 30px; display: flex; justify-content: space-between; }
+        .container { max-width: 700px; margin: 30px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h2 { color: #1a73e8; margin-top: 0; }
+        .form-row { display: flex; gap: 15px; margin-bottom: 15px; }
+        .form-group { flex: 1; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+        .btn { padding: 12px 30px; background: #1a73e8; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .btn:hover { background: #0d5cb6; }
+        .section { margin-top: 25px; padding-top: 20px; border-top: 1px solid #eee; }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>👤 Meu Perfil</h2>
+        <span>Ana Matsinhe (Paciente)</span>
+    </header>
+
+    <div class="container">
+        <h2>Dados Pessoais</h2>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" value="Ana">
+            </div>
+            <div class="form-group">
+                <label for="apelido">Apelido</label>
+                <input type="text" id="apelido" value="Matsinhe">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" value="ana@email.mz">
+            </div>
+            <div class="form-group">
+                <label for="telefone">Telefone</label>
+                <input type="text" id="telefone" value="+258 84 123 4567">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="bairro">Bairro</label>
+                <input type="text" id="bairro" value="Polana">
+            </div>
+            <div class="form-group">
+                <label for="rua">Rua</label>
+                <input type="text" id="rua" value="Av. Julius Nyerere">
+            </div>
+        </div>
+
+        <button class="btn">💾 Salvar Alterações</button>
+
+        <div class="section">
+            <h2>Alterar Senha</h2>
+            <div class="form-group">
+                <label for="senhaAtual">Senha Atual</label>
+                <input type="password" id="senhaAtual">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="novaSenha">Nova Senha</label>
+                    <input type="password" id="novaSenha">
+                </div>
+                <div class="form-group">
+                    <label for="confirmaSenha">Confirmar Nova Senha</label>
+                    <input type="password" id="confirmaSenha">
+                </div>
+            </div>
+            <button class="btn">🔐 Alterar Senha</button>
+        </div>
+    </div>
+</body>
+</html>

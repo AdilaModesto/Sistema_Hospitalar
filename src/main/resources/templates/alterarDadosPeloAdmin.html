@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Paciente - Admin</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f0f2f5; margin: 0; padding: 0; }
+        header { background: #1a73e8; color: white; padding: 15px 30px; display: flex; justify-content: space-between; }
+        .container { max-width: 900px; margin: 20px auto; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .search-box { background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        .search-row { display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+        .search-group { flex: 1; min-width: 200px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; font-size: 14px; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+        button { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .btn-search { background: #1a73e8; color: white; }
+        .btn-save { background: #34a853; color: white; width: 100%; padding: 12px; margin-top: 10px; }
+        .btn-save:hover { background: #2d8e49; }
+        .form-row { display: flex; gap: 15px; margin-bottom: 15px; flex-wrap: wrap; }
+        .form-group { flex: 1; min-width: 200px; }
+        h2 { color: #1a73e8; margin-top: 0; }
+        .patient-found { background: #e8f5e9; padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 4px solid #34a853; }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>✏️ Editar Dados do Paciente</h2>
+        <span>Administrador</span>
+    </header>
+
+    <div class="container">
+        <!-- Busca de Paciente -->
+        <div class="search-box">
+            <h3>🔍 Localizar Paciente</h3>
+            <div class="search-row">
+                <div class="search-group">
+                    <label for="buscaNome">Nome ou Apelido</label>
+                    <input type="text" id="buscaNome" placeholder="Ex: Ana Matsinhe">
+                </div>
+                <div class="search-group">
+                    <label for="buscaTelefone">Telefone</label>
+                    <input type="text" id="buscaTelefone" placeholder="+258 84 XXX XXXX">
+                </div>
+                <div class="search-group">
+                    <label for="buscaId">ID do Paciente</label>
+                    <input type="text" id="buscaId" placeholder="Ex: 123">
+                </div>
+            </div>
+            <button class="btn-search" onclick="buscarPaciente()">Buscar Paciente</button>
+        </div>
+
+        <!-- Resultado da Busca (simulado após busca) -->
+        <div class="patient-found" id="resultadoPaciente" style="display:none;">
+            <h3>✅ Paciente Encontrado: <strong>Ana Matsinhe</strong> (ID: 105)</h3>
+            
+            <form id="formEdicao" action="/api/admin/pacientes/105" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nome">Nome *</label>
+                        <input type="text" id="nome" name="nome" value="Ana" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apelido">Apelido *</label>
+                        <input type="text" id="apelido" name="apelido" value="Matsinhe" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="sexo">Sexo *</label>
+                        <select id="sexo" name="sexo" required>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Feminino" selected>Feminino</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dataNasc">Data de Nascimento *</label>
+                        <input type="date" id="dataNasc" name="dataNasc" value="1992-03-15" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">E-mail *</label>
+                        <input type="email" id="email" name="email" value="ana@email.mz" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone *</label>
+                        <input type="text" id="telefone" name="telefone" value="+258 84 123 4567" required>
+                    </div>
+                </div>
+
+                <h4>📍 Endereço</h4>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="distrito">Distrito *</label>
+                        <input type="text" id="distrito" name="distrito" value="Maputo Cidade" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bairro">Bairro *</label>
+                        <input type="text" id="bairro" name="bairro" value="Malanga" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="rua">Rua *</label>
+                    <input type="text" id="rua" name="rua" value="Rua das Acácias" required>
+                </div>
+
+                <button type="submit" class="btn-save">💾 Salvar Alterações</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function buscarPaciente() {
+            // Simula busca (em produção, chamaria sua API)
+            const nome = document.getElementById('buscaNome').value;
+            if (nome.trim() !== '') {
+                document.getElementById('resultadoPaciente').style.display = 'block';
+                // Em implementação real, preencheria com dados da API
+            } else {
+                alert('Por favor, informe pelo menos um critério de busca.');
+            }
+        }
+
+        // Permitir busca ao pressionar Enter
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                buscarPaciente();
+            }
+        });
+    </script>
+</body>
+</html>

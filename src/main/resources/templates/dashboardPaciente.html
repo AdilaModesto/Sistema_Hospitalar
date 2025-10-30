@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Meu Painel - Paciente</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f7fa; }
+        header { background: #1a73e8; color: white; padding: 15px 30px; display: flex; justify-content: space-between; }
+        .main { display: flex; }
+        .sidebar { width: 250px; background: #fff; padding: 20px; height: calc(100vh - 70px); }
+        .content { flex: 1; padding: 20px; }
+        .card { background: white; margin-bottom: 20px; padding: 20px; border-radius: 8px; box-shadow: 0 1px 5px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #f8f9fa; }
+        .btn { padding: 8px 12px; background: #1a73e8; color: white; text-decoration: none; border-radius: 4px; display: inline-block; }
+        .btn:hover { background: #0d5cb6; }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>Olá, Ana Matsinhe!</h2>
+        <span>Paciente</span>
+    </header>
+
+    <div class="main">
+        <div class="sidebar">
+            <a href="#" class="btn" style="display: block; margin-bottom: 10px;">Meu Perfil</a>
+            <a href="marcacao.html" class="btn" style="display: block; margin-bottom: 10px;">Nova Marcação</a>
+            <a href="#" class="btn" style="display: block;">Minhas Consultas</a>
+        </div>
+
+        <div class="content">
+            <div class="card">
+                <h3>Próximas Marcações</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Hora</th>
+                            <th>Médico</th>
+                            <th>Especialidade</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10/11/2025</td>
+                            <td>14:30</td>
+                            <td>Dr. João Nkomo</td>
+                            <td>Clínica Geral</td>
+                            <td><span style="color: green;">Agendada</span></td>
+                        </tr>
+                        <tr>
+                            <td>25/11/2025</td>
+                            <td>10:00</td>
+                            <td>Dra. Lúcia Abreu</td>
+                            <td>Pediatria</td>
+                            <td><span style="color: orange;">Confirmada</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>Últimas Consultas</h3>
+                <p>Consulta de Clínica Geral em 05/10/2025 – Diagnóstico: Infecção respiratória leve.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

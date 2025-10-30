@@ -1,0 +1,51 @@
+<!-- auto-cadastro-paciente.html -->
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastre-se como Paciente</title>
+    <style>
+        /* Estilo semelhante, mas com tom mais acolhedor */
+        body { font-family: Arial, sans-serif; background: #e8f4fc; margin: 0; padding: 0; }
+        .container { max-width: 700px; margin: 40px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        h2 { color: #1a73e8; text-align: center; margin-bottom: 25px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: #1a73e8; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; }
+        button:hover { background: #0d5cb6; }
+        .note { background: #fff8e1; padding: 10px; border-radius: 6px; font-size: 14px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>👨‍⚕️ Cadastre-se no Sistema de Consultas</h2>
+        <p>Preencha seus dados para agendar consultas online.</p>
+        
+        <form action="/api/pacientes/registrar" method="POST">
+            <div class="form-group">
+                <label for="nome">Nome Completo *</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="senha">Senha *</label>
+                <input type="password" id="senha" name="senha" required minlength="6">
+            </div>
+            <div class="form-group">
+                <label for="telefone">Telefone *</label>
+                <input type="text" id="telefone" name="telefone" placeholder="+258 84 XXX XXXX" required>
+            </div>
+
+            <div class="note">
+                Após o cadastro, você receberá um e-mail de confirmação. Em seguida, poderá agendar consultas!
+            </div>
+
+            <button type="submit">Criar Conta</button>
+        </form>
+    </div>
+</body>
+</html>
