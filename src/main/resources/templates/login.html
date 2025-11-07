@@ -1,48 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Login - Sistema de Consultas</title>
     <link rel="stylesheet" th:href="@{/css/login.css}" />
 </head>
+
 <body>
-<div class="container">
-    <h2>Login</h2>
-    <form id="loginForm" method="get">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" name="email" required>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm" method="get">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" required>
 
-        <label for="senha">Senha</label>
-        <input type="password" id="senha" name="senha" required>
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" required>
 
-        <label for="perfil">Perfil</label>
-        <select id="perfil" name="perfil" required>
-            <option value="">Selecione</option>
-            <option value="PACIENTE">Paciente</option>
-            <option value="MEDICO">Médico</option>
-            <option value="ADMIN">Administrador</option>
-        </select>
+            <label for="perfil">Perfil</label>
+            <select id="perfil" name="perfil" required>
+                <option value="">Selecione</option>
+                <option value="PACIENTE">Paciente</option>
+                <option value="MEDICO">Médico</option>
+                <option value="ADMIN">Administrador</option>
+            </select>
 
-        <button type="submit">Entrar</button>
-    </form>
+            <button type="submit">Entrar</button>
+        </form>
 
-    <a th:href="@{/cadastro}" class="link-cadastro">Criar nova conta</a>
-</div>
-
-<script>
-document.getElementById('loginForm').addEventListener('submit', function (e) {
-    const perfil = document.getElementById('perfil').value;
-    if (perfil === "PACIENTE") {
-        this.action = "/dashboardPaciente";
-    } else if (perfil === "MEDICO") {
-        this.action = "/dashboardMedico";
-    } else if (perfil === "ADMIN") {
-        this.action = "/dashboardAdmin";
-    } else {
-        e.preventDefault(); // impede envio se nenhum perfil foi escolhido
-        alert("Selecione um perfil antes de continuar!");
-    }
-});
-</script>
+        <a th:href="@{/cadastro}" class="link-cadastro">Criar nova conta</a>
+    </div>
+    <script th:src="@{/js/login.js}"></script>
 </body>
+
 </html>

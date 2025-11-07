@@ -1,76 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <title>Dashboard de Monitoramento - Highcharts</title>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f7fa;
-            color: #333;
-        }
-        header {
-            background: #1a73e8;
-            color: white;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-        .card {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            padding: 20px;
-        }
-        .card h3 {
-            margin-top: 0;
-            color: #1a73e8;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-            font-size: 18px;
-        }
-        .highcharts-container {
-            width: 100% !important;
-            height: 300px !important;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-            font-size: 14px;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-        th {
-            background-color: #f8f9fa;
-            font-weight: 600;
-        }
-        .metric {
-            font-size: 24px;
-            font-weight: bold;
-            color: #1a73e8;
-        }
-        .metric-label {
-            font-size: 14px;
-            color: #666;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/monitoramento.css}" />
 </head>
+
 <body>
     <header>
         <h2>🏥 Dashboard de Monitoramento - Sistema de Consultas</h2>
@@ -157,88 +96,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Dr. João Nkomo</td><td>42</td></tr>
-                    <tr><td>Dra. Lúcia Abreu</td><td>38</td></tr>
+                    <tr>
+                        <td>Dr. João Nkomo</td>
+                        <td>42</td>
+                    </tr>
+                    <tr>
+                        <td>Dra. Lúcia Abreu</td>
+                        <td>38</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
-
-    <script>
-        // 1. Gráfico de Pizza: Sexo dos Pacientes
-        Highcharts.chart('sexoChart', {
-            chart: { type: 'pie' },
-            title: { text: null },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: { enabled: true, format: '{point.name}: {point.percentage:.1f}%' }
-                }
-            },
-            series: [{
-                name: 'Pacientes',
-                colorByPoint: true,
-                data: [
-                    { name: 'Masculino', y: 598 },
-                    { name: 'Feminino', y: 625 },
-                    { name: 'Outro', y: 25 }
-                ]
-            }]
-        });
-
-        // 2. Gráfico de Colunas: Especialidades Mais Demandadas
-        Highcharts.chart('especialidadesChart', {
-            chart: { type: 'column' },
-            title: { text: null },
-            xAxis: { categories: ['Clínica Geral', 'Pediatria', 'Ginecologia', 'Cardiologia', 'Dermatologia'] },
-            yAxis: { title: { text: 'Número de Consultas' } },
-            series: [{
-                name: 'Consultas',
-                 data:[120, 95, 80, 65, 50],
-                color: '#4caf50'
-            }]
-        });
-
-        // 3. Gráfico de Área Empilhada: Marcações por Tipo
-        Highcharts.chart('tipoMarcacoesChart', {
-            chart: { type: 'area' },
-            title: { text: null },
-            xAxis: { categories: ['Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out'] },
-            yAxis: { title: { text: 'Quantidade' } },
-            plotOptions: { area: { stacking: 'normal' } },
-           series: [
-    {
-      name: 'Consulta',
-      data: [100, 110, 120, 130, 140, 150]
-    },
-    {
-      name: 'Exame',
-      data: [60, 70, 80, 90, 100, 110]
-    },
-    {
-      name: 'Urgência',
-      data: [20, 25, 30, 35, 40, 45]
-    }
-  ]
-        });
-
-        // 4. Gráfico de Linhas: Taxa de Cancelamento Mensal (%)
-        Highcharts.chart('cancelamentoChart', {
-            chart: { type: 'line' },
-            title: { text: null },
-            xAxis: { categories: ['Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out'] },
-            yAxis: { 
-                title: { text: 'Taxa de Cancelamento (%)' },
-                max: 100
-            },
-            series: [{
-                name: 'Cancelamento',
-                 data: [10.2, 11.5, 12.0, 11.8, 12.3, 12.5],
-                color: '#f44336'
-            }],
-            tooltip: { valueSuffix: ' %' }
-        });
-    </script>
+    <script th:src="@{/js/monitoramento.js}"></script>
 </body>
+
 </html>

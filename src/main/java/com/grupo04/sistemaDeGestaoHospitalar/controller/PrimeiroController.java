@@ -18,11 +18,6 @@ public class PrimeiroController {
     public String login() {
         return "login"; 
     }
-
-     @GetMapping("/paciente/cadastro")
-    public String cadastroPaciente() {
-        return "cadastroPaciente";
-    }
     
 
 }
