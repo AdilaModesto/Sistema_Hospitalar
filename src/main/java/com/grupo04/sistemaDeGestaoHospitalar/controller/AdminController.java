@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 
-public class Admin {
+public class AdminController {
 
     @GetMapping("/admin/monitoramento")
     public String dashboardMonitoramento() {
