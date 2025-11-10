@@ -1,14 +1,9 @@
 
-document.getElementById('loginForm').addEventListener('submit', function () {
+// Quando o formulário é submetido, deixamos o servidor tratar a autenticação via /perform-login
+document.getElementById('loginForm').addEventListener('submit', function (e) {
     const perfil = document.getElementById('perfil').value;
-    if (perfil === "PACIENTE") {
-        this.action = "/dashboardPaciente";
-    } else if (perfil === "MEDICO") {
-        this.action = "/dashboardMedico";
-    } else if (perfil === "ADMIN") {
-        this.action = "/dashboardAdmin";
-    } else {
-        e.preventDefault(); // impede envio se nenhum perfil foi escolhido
-        alert("Selecione um perfil antes de continuar!");
+    if (!perfil) {
+        e.preventDefault();
+        alert('Selecione um perfil antes de continuar!');
     }
 });

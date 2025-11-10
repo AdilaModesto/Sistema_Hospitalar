@@ -85,5 +85,71 @@ document.addEventListener('DOMContentLoaded', function () {
                 }],
                 tooltip: { valueSuffix: ' %' }
             });
+
+            // 5. Preencher tabela de Últimas Urgências
+            const ultimasUrgenciasBody = document.getElementById('ultimasUrgenciasBody');
+            if (ultimasUrgenciasBody) {
+                if (data.ultimasUrgencias && data.ultimasUrgencias.length > 0) {
+                    ultimasUrgenciasBody.innerHTML = data.ultimasUrgencias.map(u => {
+                        const corPrioridade = u.prioridade === 'Alta' ? '#d32f2f' :
+                            u.prioridade === 'Média' ? '#f57c00' : '#4caf50';
+                        return `<tr>
+                            <td>${u.paciente}</td>
+                            <td style="color: ${corPrioridade}; font-weight: bold;">${u.prioridade}</td>
+                            <td>${u.data}</td>
+                        </tr>`;
+                    }).join('');
+                } else {
+                    ultimasUrgenciasBody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: #999;">Sem dados disponíveis</td></tr>';
+                }
+            }
+
+            // 6. Preencher tabela de Médicos Mais Ativos (top 5, decrescente)
+            const medicosMaisAtivosBody = document.getElementById('medicosMaisAtivosBody');
+            if (medicosMaisAtivosBody) {
+                // aceitar variações no JSON: tentar encontrar array com médicos
+                let medicoArray = [];
+                if (Array.isArray(data.medicosAtivos) && data.medicosAtivos.length > 0) {
+                    medicoArray = data.medicosAtivos.slice();
+                } else if (Array.isArray(data.medicos_ativos) && data.medicos_ativos.length > 0) {
+                    medicoArray = data.medicos_ativos.slice();
+                } else if (Array.isArray(data.medicos) && data.medicos.length > 0) {
+                    medicoArray = data.medicos.slice();
+                }
+
+                // Normalizar formatos: objetos com chaves diferentes ou arrays de arrays
+                medicoArray = medicoArray.map(item => {
+                    if (!item) return { nome: '—', consultas: 0 };
+                    // caso seja array [nome, quantidade]
+                    if (Array.isArray(item)) {
+                        return { nome: item[0] || '—', consultas: item[1] != null ? Number(item[1]) : 0 };
+                    }
+                    // caso seja objeto com chaves variadas
+                    if (typeof item === 'object') {
+                        const nome = item.nome || item.medico || item.nomeMedico || item.nome_medico || item[0] || '—';
+                        const consultas = item.consultas || item.quantidade || item.qtd || item.count || item[1] || 0;
+                        return { nome: nome, consultas: consultas != null ? Number(consultas) : 0 };
+                    }
+                    // fallback
+                    return { nome: String(item), consultas: 0 };
+                });
+
+                // garantir ordenação decrescente por consultas
+                medicoArray.sort((a, b) => Number(b.consultas) - Number(a.consultas));
+                // pegar top 5
+                const top5 = medicoArray.slice(0, 5);
+                // completar com placeholders se menos que 5
+                while (top5.length < 5) {
+                    top5.push({ nome: '—', consultas: 0 });
+                }
+
+                // gerar HTML
+                medicosMaisAtivosBody.innerHTML = top5.map((m, idx) => `
+                    <tr>
+                        <td>${m.nome}</td>
+                        <td>${m.consultas}</td>
+                    </tr>
+                `).join('');
+            }
         }).catch(err => console.error('Erro ao carregar dados do dashboard:', err));
 });

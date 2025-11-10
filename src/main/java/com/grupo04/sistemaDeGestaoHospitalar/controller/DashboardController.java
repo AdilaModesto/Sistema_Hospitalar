@@ -16,6 +16,10 @@ public class DashboardController {
 
     @GetMapping("/dashboardAdmin")
     public String dashboardAdmin(Model model) {
+        // Obter o tempo atual no backend
+        long tempoAtual = System.currentTimeMillis();
+        // Adicionar ao modelo
+        model.addAttribute("tempoAtual", tempoAtual);
         return "monitoramento";
     }
 

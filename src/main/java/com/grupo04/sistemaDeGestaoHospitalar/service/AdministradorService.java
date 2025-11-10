@@ -18,23 +18,23 @@ public class AdministradorService {
         return repo.findAll();
     }
 
-    public Optional<Administrador> buscar(Integer id) {
-        return repo.findById(id);
+    public Optional<Administrador> buscar(String email) {
+        return repo.findByEmail(email);
     }
 
     public Administrador salvar(Administrador obj) {
         return repo.save(obj);
     }
 
-    public Administrador atualizar(Integer id, Administrador novo) {
-        return repo.findById(id).map(a -> {
-            a.setNome(novo.getNome());
-            a.setEmail(novo.getEmail());
-            return repo.save(a);
-        }).orElseThrow(() -> new RuntimeException("Administrador não encontrado"));
-    }
+    public Administrador atualizar(String email, Administrador novo) {
+    return repo.findByEmail(email).map(a -> {
+        if (novo.getNome() != null) a.setNome(novo.getNome());
+        if (novo.getEmail() != null) a.setEmail(novo.getEmail());
+        return repo.save(a);
+    }).orElseThrow(() -> new RuntimeException("Administrador não encontrado com o email: " + email));
+}
 
-    public void deletar(Integer id) {
-        repo.deleteById(id);
+    public void deletar(String email) {
+        repo.deleteByEmail(email);
     }
 }

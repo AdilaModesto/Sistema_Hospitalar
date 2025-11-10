@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -72,16 +72,9 @@
                         <th>Data</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="ultimasUrgenciasBody">
                     <tr>
-                        <td>Carlos Chilundo</td>
-                        <td style="color: #d32f2f;">Alta</td>
-                        <td>29/10/2025 10:15</td>
-                    </tr>
-                    <tr>
-                        <td>Ana Matsinhe</td>
-                        <td style="color: #f57c00;">Média</td>
-                        <td>28/10/2025 14:30</td>
+                        <td colspan="3" style="text-align: center; color: #999;">Carregando dados...</td>
                     </tr>
                 </tbody>
             </table>
@@ -97,20 +90,15 @@
                         <th>Consultas</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="medicosMaisAtivosBody">
                     <tr>
-                        <td>Dr. João Nkomo</td>
-                        <td>42</td>
-                    </tr>
-                    <tr>
-                        <td>Dra. Lúcia Abreu</td>
-                        <td>38</td>
+                        <td colspan="2" style="text-align: center; color: #999;">Carregando dados...</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <script th:src="@{/js/monitoramento.js(v=${T(java.lang.System).currentTimeMillis()})}"></script>
+    <script th:src="@{/js/monitoramento.js(v=${tempoAtual})}"></script>
 </body>
 
 </html>

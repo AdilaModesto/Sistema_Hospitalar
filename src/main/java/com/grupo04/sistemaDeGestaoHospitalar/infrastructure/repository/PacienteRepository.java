@@ -1,6 +1,7 @@
 package com.grupo04.sistemaDeGestaoHospitalar.infrastructure.repository;
 
 import com.grupo04.sistemaDeGestaoHospitalar.infrastructure.model.Paciente;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -21,4 +22,6 @@ public interface PacienteRepository extends JpaRepository<Paciente, Long> {
     long countPacientesHoje();
 
     // Outros métodos personalizados que você precisar...
+
+    Optional<Paciente> findByEmail(String email);
 }
