@@ -10,9 +10,8 @@ import java.util.List;
 
 @Repository
 public interface PacienteRepository extends JpaRepository<Paciente, Long> {
-    // Conta total de pacientes
-    @Query("SELECT COUNT(p) FROM Paciente p")
-    long countTotalPacientes();
+    
+    long count();
 
     // Conta pacientes por sexo
     @Query("SELECT p.sexo as genero, COUNT(p) as quantidade FROM Paciente p GROUP BY p.sexo")

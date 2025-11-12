@@ -40,7 +40,7 @@ public class DashboardService {
         DashboardDTO dashboard = new DashboardDTO();
 
         // Totais simples
-        dashboard.setTotalPacientes(pacienteRepository.countTotalPacientes());
+        dashboard.setTotalPacientes(pacienteRepository.count());
         dashboard.setMarcacoesHoje(marcacaoRepository.countMarcacoesHoje());
         dashboard.setTaxaMarcacoesRealizadas(marcacaoRepository.getTaxaMarcacoesRealizadas());
 
@@ -173,7 +173,7 @@ public class DashboardService {
         dashboard.setDadosMarcacoes(marcacoesMensais);
 
         // --- Taxa de cancelamento mensal ---
-        List<Object[]> taxaRows = marcacaoRepository.getTaxaMarcacoesRealizadas(dataInicial);
+        List<Object[]> taxaRows = marcacaoRepository.getTaxaRealizadasMensal(dataInicial);
         List<DashboardDTO.RealizadasMensalDTO> taxaList = new ArrayList<>();
         if (taxaRows != null) {
             // transformar em mapa para buscar label do mês

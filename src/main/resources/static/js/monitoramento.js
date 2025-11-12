@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 metrics[0].textContent = data.totalPacientes != null ? data.totalPacientes : '—';
                 metrics[1].textContent = data.marcacoesHoje != null ? data.marcacoesHoje : '—';
                 // formatar taxa com 1 casa decimal
-                metrics[2].textContent = data.taxaCancelamento != null ? Number(data.taxaCancelamento).toFixed(1) + '%' : '—';
+                metrics[2].textContent = data.taxaMarcacoesRealizadas != null ? Number(data.taxaMarcacoesRealizadas).toFixed(1) + '%' : '—';
             } else {
                 // fallback: tentar selecionar individualmente por posição relativa
                 console.warn('Elemento .metric não encontrado em quantidade esperada', metrics);

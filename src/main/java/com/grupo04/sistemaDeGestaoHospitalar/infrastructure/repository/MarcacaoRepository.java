@@ -13,7 +13,7 @@ public interface MarcacaoRepository extends JpaRepository<Marcacao, Long> {
     @Query("SELECT COUNT(m) FROM Marcacao m WHERE m.data = CURRENT_DATE")
     long countMarcacoesHoje();
 
-    // Taxa de cancelamento
+    // Taxa de Marcacoes Realizadas
     @Query("SELECT COUNT(m) * 100.0 / (SELECT COUNT(m2) FROM Marcacao m2) FROM Marcacao m WHERE m.estado = 'Realizada'")
     double getTaxaMarcacoesRealizadas();
 
@@ -40,7 +40,7 @@ public interface MarcacaoRepository extends JpaRepository<Marcacao, Long> {
             "WHERE m.data >= ?1 " +
             "GROUP BY YEAR(m.data), MONTH(m.data) " +
             "ORDER BY YEAR(m.data), MONTH(m.data)")
-    List<Object[]> getTaxaMarcacoesRealizadas(LocalDate dataInicial);
+    List<Object[]> getTaxaRealizadasMensal(LocalDate dataInicial);
 
     // Médicos mais ativos (com mais consultas)
     @Query("SELECT m.medico.nome as medico, COUNT(m) as quantidade " +
