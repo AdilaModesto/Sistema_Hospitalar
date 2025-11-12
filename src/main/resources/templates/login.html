@@ -20,8 +20,8 @@
             <label for="perfil">Perfil</label>
             <select id="perfil" name="perfil" required>
                 <option value="">Selecione</option>
-                <option value="PACIENTE">Paciente</option>
-                <option value="MEDICO">Médico</option>
+                <!--<option value="PACIENTE">Paciente</option>
+                <option value="MEDICO">Médico</option>-->
                 <option value="ADMIN">Administrador</option>
             </select>
 
@@ -30,7 +30,7 @@
 
         <div th:if="${loginError}" style="color: #d32f2f; margin-top: 10px;">[[${loginError}]]</div>
 
-        <a th:href="@{/cadastro}" class="link-cadastro">Criar nova conta</a>
+        <!--<a th:href="@{/cadastro}" class="link-cadastro">Criar nova conta</a>-->
     </div>
     <script th:src="@{/js/login.js}"></script>
 </body>

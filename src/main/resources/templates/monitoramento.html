@@ -22,19 +22,19 @@
         <!-- Card: Total de Pacientes -->
         <div class="card">
             <div class="metric-label">Total de Pacientes</div>
-            <div class="metric">1.248</div>
+            <div class="metric-value" th:text="${dashboard.totalPacientes}">0</div>
         </div>
 
         <!-- Card: Marcações Hoje -->
         <div class="card">
             <div class="metric-label">Marcações Hoje</div>
-            <div class="metric">24</div>
+            <div class="metric-value" th:text="${dashboard.marcacoesHoje}">0</div>
         </div>
 
         <!-- Card: Taxa de Cancelamento -->
         <div class="card">
-            <div class="metric-label">Taxa de Cancelamento</div>
-            <div class="metric">12,5%</div>
+            <div class="metric-label">Taxa de Marcações Realizadas</div>
+            <div class="metric-value" th:text="${dashboard.taxaMarcacoesRealizadas}">0</div>
         </div>
 
         <!-- Gráfico 1: Pizza - Sexo dos Pacientes -->
@@ -55,9 +55,9 @@
             <div id="tipoMarcacoesChart" style="height: 300px;"></div>
         </div>
 
-        <!-- Gráfico 4: Linhas - Taxa de Cancelamento Mensal -->
+        <!-- Gráfico 4: Linhas - Taxa Marcações Realizadas Mensal -->
         <div class="card">
-            <h3>Taxa de Cancelamento (%)</h3>
+            <h3>Taxa de Marcações Realizadas (%)</h3>
             <div id="cancelamentoChart" style="height: 300px;"></div>
         </div>
 

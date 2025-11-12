@@ -14,8 +14,8 @@ public interface MarcacaoRepository extends JpaRepository<Marcacao, Long> {
     long countMarcacoesHoje();
 
     // Taxa de cancelamento
-    @Query("SELECT COUNT(m) * 100.0 / (SELECT COUNT(m2) FROM Marcacao m2) FROM Marcacao m WHERE m.estado = 'Cancelada'")
-    double getTaxaCancelamento();
+    @Query("SELECT COUNT(m) * 100.0 / (SELECT COUNT(m2) FROM Marcacao m2) FROM Marcacao m WHERE m.estado = 'Realizada'")
+    double getTaxaMarcacoesRealizadas();
 
     // Marcações por tipo nos últimos 6 meses
     @Query("SELECT m.data as mes, COUNT(m) as quantidade, c.tipoConsulta as tipo " +
@@ -33,14 +33,14 @@ public interface MarcacaoRepository extends JpaRepository<Marcacao, Long> {
             "ORDER BY YEAR(m.data), MONTH(m.data)")
     List<Object[]> getMarcacoesPorTipoMensal(LocalDate dataInicial);
 
-    // Taxa de cancelamento por mês (ano, mês, taxaPercentual)
-    @Query("SELECT YEAR(m.data) as ano, MONTH(m.data) as mes, (SUM(CASE WHEN m.estado = 'Cancelada' THEN 1 ELSE 0 END) * 100.0) / COUNT(m) as taxa "
+    // Taxa de Marcaoes Realizadas por mês (ano, mês, taxaPercentual)
+    @Query("SELECT YEAR(m.data) as ano, MONTH(m.data) as mes, (SUM(CASE WHEN m.estado = 'Realizada' THEN 1 ELSE 0 END) * 100.0) / COUNT(m) as taxa "
             +
             "FROM Marcacao m " +
             "WHERE m.data >= ?1 " +
             "GROUP BY YEAR(m.data), MONTH(m.data) " +
             "ORDER BY YEAR(m.data), MONTH(m.data)")
-    List<Object[]> getTaxaCancelamentoMensal(LocalDate dataInicial);
+    List<Object[]> getTaxaMarcacoesRealizadas(LocalDate dataInicial);
 
     // Médicos mais ativos (com mais consultas)
     @Query("SELECT m.medico.nome as medico, COUNT(m) as quantidade " +

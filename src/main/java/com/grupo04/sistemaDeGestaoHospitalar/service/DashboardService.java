@@ -40,9 +40,9 @@ public class DashboardService {
         DashboardDTO dashboard = new DashboardDTO();
 
         // Totais simples
-        dashboard.setTotalPacientes(pacienteRepository.count());
+        dashboard.setTotalPacientes(pacienteRepository.countTotalPacientes());
         dashboard.setMarcacoesHoje(marcacaoRepository.countMarcacoesHoje());
-        dashboard.setTaxaCancelamento(marcacaoRepository.getTaxaCancelamento());
+        dashboard.setTaxaMarcacoesRealizadas(marcacaoRepository.getTaxaMarcacoesRealizadas());
 
         // Dados por gênero
         List<Object[]> sexoRows = pacienteRepository.countBySexo();
@@ -173,8 +173,8 @@ public class DashboardService {
         dashboard.setDadosMarcacoes(marcacoesMensais);
 
         // --- Taxa de cancelamento mensal ---
-        List<Object[]> taxaRows = marcacaoRepository.getTaxaCancelamentoMensal(dataInicial);
-        List<DashboardDTO.CancelamentoMensalDTO> taxaList = new ArrayList<>();
+        List<Object[]> taxaRows = marcacaoRepository.getTaxaMarcacoesRealizadas(dataInicial);
+        List<DashboardDTO.RealizadasMensalDTO> taxaList = new ArrayList<>();
         if (taxaRows != null) {
             // transformar em mapa para buscar label do mês
             Map<YearMonth, Double> taxaMap = new LinkedHashMap<>();
@@ -188,7 +188,7 @@ public class DashboardService {
             }
 
             for (YearMonth ym : mensalMap.keySet()) {
-                DashboardDTO.CancelamentoMensalDTO c = new DashboardDTO.CancelamentoMensalDTO();
+                DashboardDTO.RealizadasMensalDTO c = new DashboardDTO.RealizadasMensalDTO();
                 c.setMes(mensalMap.get(ym).getMes());
                 Double taxa = taxaMap.getOrDefault(ym, 0.0);
                 c.setTaxa(Math.round(taxa * 10.0) / 10.0); // arredondar 1 casa decimal
@@ -197,14 +197,14 @@ public class DashboardService {
         } else {
             // preencher zeros se não houver dados
             for (DashboardDTO.MarcacaoMensalDTO m : marcacoesMensais) {
-                DashboardDTO.CancelamentoMensalDTO c = new DashboardDTO.CancelamentoMensalDTO();
+                DashboardDTO.RealizadasMensalDTO c = new DashboardDTO.RealizadasMensalDTO();
                 c.setMes(m.getMes());
                 c.setTaxa(0.0);
                 taxaList.add(c);
             }
         }
 
-        dashboard.setDadosCancelamento(taxaList);
+        dashboard.setDadosRealizadas(taxaList);
 
         return dashboard;
     }

@@ -45,7 +45,7 @@ public class AuthenticationController {
                 session.setAttribute("role", "ADMIN");
                 return "redirect:/dashboardAdmin";
             }
-        } else if ("PACIENTE".equals(perfil)) {
+        } /***else if ("PACIENTE".equals(perfil)) {
             Optional<Paciente> opt = pacienteRepository.findByEmail(email);
             if (opt.isPresent() && opt.get().getSenha().equals(senha)) {
                 Paciente paciente = opt.get();
@@ -63,7 +63,7 @@ public class AuthenticationController {
                 session.setAttribute("role", "MEDICO");
                 return "redirect:/dashboardMedico";
             }
-        }
+        }***/
 
         // falha de autenticação
         redirectAttributes.addFlashAttribute("loginError", "Credenciais inválidas");

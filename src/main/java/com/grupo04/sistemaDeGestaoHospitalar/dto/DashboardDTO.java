@@ -7,12 +7,12 @@ import java.util.List;
 public class DashboardDTO {
     private long totalPacientes;
     private long marcacoesHoje;
-    private double taxaCancelamento;
+    private double taxaMarcacoesRealizadas;
 
     private List<GeneroDTO> dadosGenero;
     private List<EspecialidadeDTO> dadosEspecialidade;
     private List<MarcacaoMensalDTO> dadosMarcacoes;
-    private List<CancelamentoMensalDTO> dadosCancelamento;
+    private List<RealizadasMensalDTO> dadosRealizadas;
     private List<UrgenciaDTO> ultimasUrgencias;
     private List<MedicoAtivoDTO> medicosAtivos;
 
@@ -37,7 +37,7 @@ public class DashboardDTO {
     }
 
     @Data
-    public static class CancelamentoMensalDTO {
+    public static class RealizadasMensalDTO {
         private String mes;
         private double taxa;
     }

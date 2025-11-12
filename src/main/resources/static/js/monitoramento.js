@@ -67,20 +67,20 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             // 4. Gráfico de Linhas: Taxa de Cancelamento Mensal (%)
-            const categoriasCancelamento = data.dadosCancelamento ? data.dadosCancelamento.map(c => c.mes) : [];
-            const taxaCancelamento = data.dadosCancelamento ? data.dadosCancelamento.map(c => c.taxa) : [];
+            const categoriasRealizadas = data.dadosRealizadas ? data.dadosRealizadas.map(c => c.mes) : [];
+            const taxaRealizadas = data.dadosRealizadas ? data.dadosRealizadas.map(c => c.taxa) : [];
 
             Highcharts.chart('cancelamentoChart', {
                 chart: { type: 'line' },
                 title: { text: null },
-                xAxis: { categories: categoriasCancelamento },
+                xAxis: { categories: categoriasRealizadas },
                 yAxis: {
-                    title: { text: 'Taxa de Cancelamento (%)' },
+                    title: { text: 'Taxa de Marcações Realizadas (%)' },
                     max: 100
                 },
                 series: [{
-                    name: 'Cancelamento',
-                    data: taxaCancelamento,
+                    name: 'Realizadas',
+                    data: taxaRealizadas,
                     color: '#f44336'
                 }],
                 tooltip: { valueSuffix: ' %' }
