@@ -13,89 +13,105 @@
 </head>
 
 <body>
-    <header>
-        <h2>🏥 Dashboard de Monitoramento - Sistema de Consultas</h2>
-        <span>Administrador</span>
-    </header>
-
-    <div class="container">
-        <!-- Card: Total de Pacientes -->
-        <div class="card">
-            <div class="metric-label">Total de Pacientes</div>
-            <div class="metric">0</div>
+    <!-- Menu Lateral -->
+    <nav class="menu-lateral">
+        <div class="menu-header">
+            <h3>🏥 Sistema de Saúde</h3>
         </div>
+        <ul>
+            <li><a href="#" class="menu-item active" data-section="dashboard">Dashboard</a></li>
+           <!-- <li><a href="#" class="menu-item" data-section="pacientes">Pacientes</a></li>
+            <li><a href="#" class="menu-item" data-section="consultas">Consultas</a></li>
+            <li><a href="#" class="menu-item" data-section="medicos">Médicos</a></li>-->
+            <li><a href="#" class="menu-item" data-section="CPU">CPU</a></li>
+        </ul>
+    </nav>
 
-        <!-- Card: Marcações Hoje -->
-        <div class="card">
-            <div class="metric-label">Marcações Hoje</div>
-            <div class="metric">0</div>
-        </div>
+    <div class="main-content">
+        <header>
+            <h2>Dashboard de Monitoramento - Sistema de Consultas</h2>
+            <span>Administrador</span>
+        </header>
 
-        <!-- Card: Taxa de Cancelamento -->
-        <div class="card">
-            <div class="metric-label">Taxa de Marcações Realizadas</div>
-            <div class="metric">0</div>
-        </div>
+        <div class="container">
+            <!-- Card: Total de Pacientes -->
+            <div class="card">
+                <div class="metric-label">Total de Pacientes</div>
+                <div class="metric">0</div>
+            </div>
 
-        <!-- Gráfico 1: Pizza - Sexo dos Pacientes -->
-        <div class="card">
-            <h3>Pacientes por Sexo</h3>
-            <div id="sexoChart" style="height: 300px;"></div>
-        </div>
+            <!-- Card: Marcações Hoje -->
+            <div class="card">
+                <div class="metric-label">Marcações Hoje</div>
+                <div class="metric">0</div>
+            </div>
 
-        <!-- Gráfico 2: Colunas - Especialidades Mais Demandadas -->
-        <div class="card">
-            <h3>Especialidades Mais Demandadas</h3>
-            <div id="especialidadesChart" style="height: 300px;"></div>
-        </div>
+            <!-- Card: Taxa de Cancelamento -->
+            <div class="card">
+                <div class="metric-label">Taxa de Marcações Realizadas</div>
+                <div class="metric">0</div>
+            </div>
 
-        <!-- Gráfico 3: Área Empilhada - Marcações por Tipo (últimos 6 meses) -->
-        <div class="card">
-            <h3>Marcações por Tipo (Últimos 6 Meses)</h3>
-            <div id="tipoMarcacoesChart" style="height: 300px;"></div>
-        </div>
+            <!-- Gráfico 1: Pizza - Sexo dos Pacientes -->
+            <div class="card">
+                <h3>Pacientes por Sexo</h3>
+                <div id="sexoChart" style="height: 300px;"></div>
+            </div>
 
-        <!-- Gráfico 4: Linhas - Taxa Marcações Realizadas Mensal -->
-        <div class="card">
-            <h3>Taxa de Marcações Realizadas (%)</h3>
-            <div id="cancelamentoChart" style="height: 300px;"></div>
-        </div>
+            <!-- Gráfico 2: Colunas - Especialidades Mais Demandadas -->
+            <div class="card">
+                <h3>Especialidades Mais Demandadas</h3>
+                <div id="especialidadesChart" style="height: 300px;"></div>
+            </div>
 
-        <!-- Tabela: Últimas Urgências -->
-        <div class="card">
-            <h3>Últimas Urgências</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Paciente</th>
-                        <th>Prioridade</th>
-                        <th>Data</th>
-                    </tr>
-                </thead>
-                <tbody id="ultimasUrgenciasBody">
-                    <tr>
-                        <td colspan="3" style="text-align: center; color: #999;">Carregando dados...</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            <!-- Gráfico 3: Área Empilhada - Marcações por Tipo (últimos 6 meses) -->
+            <div class="card">
+                <h3>Marcações por Tipo (Últimos 6 Meses)</h3>
+                <div id="tipoMarcacoesChart" style="height: 300px;"></div>
+            </div>
 
-        <!-- Tabela: Médicos com Mais Consultas -->
-        <div class="card">
-            <h3>Médicos Mais Ativos</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Médico</th>
-                        <th>Consultas</th>
-                    </tr>
-                </thead>
-                <tbody id="medicosMaisAtivosBody">
-                    <tr>
-                        <td colspan="2" style="text-align: center; color: #999;">Carregando dados...</td>
-                    </tr>
-                </tbody>
-            </table>
+            <!-- Gráfico 4: Linhas - Taxa Marcações Realizadas Mensal -->
+            <div class="card">
+                <h3>Taxa de Marcações Realizadas (%)</h3>
+                <div id="cancelamentoChart" style="height: 300px;"></div>
+            </div>
+
+            <!-- Tabela: Últimas Urgências -->
+            <div class="card">
+                <h3>Últimas Urgências</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Paciente</th>
+                            <th>Prioridade</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ultimasUrgenciasBody">
+                        <tr>
+                            <td colspan="3" style="text-align: center; color: #999;">Carregando dados...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Tabela: Médicos com Mais Consultas -->
+            <div class="card">
+                <h3>Médicos Mais Ativos</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Médico</th>
+                            <th>Consultas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="medicosMaisAtivosBody">
+                        <tr>
+                            <td colspan="2" style="text-align: center; color: #999;">Carregando dados...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <script th:src="@{/js/monitoramento.js(v=${tempoAtual})}"></script>

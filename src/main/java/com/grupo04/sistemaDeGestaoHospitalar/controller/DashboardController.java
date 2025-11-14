@@ -23,6 +23,11 @@ public class DashboardController {
         return "monitoramento";
     }
 
+    @GetMapping("/dashboardAdmin/cpu")
+    public String dashboardAdmin() {
+        return "cpu.html";
+    }
+
     @GetMapping("/api/dashboard-data")
     @ResponseBody
     public DashboardDTO getDashboardData() {

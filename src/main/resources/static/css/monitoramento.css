@@ -1,64 +1,147 @@
+/* Reset e Estilo Geral */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f7fa;
+    color: #333;
+    display: flex; /* Para layout com menu lateral */
+    min-height: 100vh;
+}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f7fa;
-            color: #333;
-        }
-        header {
-            background: #1a73e8;
-            color: white;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-        .card {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            padding: 20px;
-        }
-        .card h3 {
-            margin-top: 0;
-            color: #1a73e8;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-            font-size: 18px;
-        }
-        .highcharts-container {
-            width: 100% !important;
-            height: 300px !important;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-            font-size: 14px;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-        th {
-            background-color: #f8f9fa;
-            font-weight: 600;
-        }
-        .metric {
-            font-size: 24px;
-            font-weight: bold;
-            color: #1a73e8;
-        }
-        .metric-label {
-            font-size: 14px;
-            color: #666;
-        }
-    
+/* Estilo do Menu Lateral */
+.menu-lateral {
+    width: 250px;
+    background: #2c3e50;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.menu-header {
+    padding: 20px;
+    background: #1a73e8;
+    text-align: center;
+}
+
+.menu-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.menu-lateral ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.menu-lateral li {
+    border-bottom: 1px solid #34495e;
+}
+
+.menu-lateral a {
+    display: block;
+    color: #ecf0f1;
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+.menu-lateral a:hover,
+.menu-lateral a.active {
+    background: #1a73e8;
+    color: white;
+}
+
+/* Conteúdo Principal */
+.main-content {
+    flex: 1;
+    margin-left: 250px; /* Deve ser igual à largura do menu */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Estilo do Cabeçalho Principal */
+header {
+    background: #1a73e8;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Estilo do Container Principal */
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+/* Estilo dos Cards */
+.card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #1a73e8;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    font-size: 18px;
+}
+
+/* Estilo dos Gráficos */
+.highcharts-container {
+    width: 100% !important;
+    height: 300px !important;
+}
+
+/* Estilo das Tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+/* Estilo dos Indicadores (KPIs) */
+.metric {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1a73e8;
+}
+
+.metric-label {
+    font-size: 14px;
+    color: #666;
+}
