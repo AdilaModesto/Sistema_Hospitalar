@@ -24,6 +24,7 @@ public class DashboardController {
     }
 
     @GetMapping("/dashboardAdmin/cpu")
+    
     public String dashboardAdmin() {
         return "cpu.html";
     }
